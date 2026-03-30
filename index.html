@@ -1,896 +1,1676 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olabisi A. Teluwo | Data Analyst</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --cream:    #faf7f2;
-  --warm0:    #f3ede3;
-  --warm1:    #e8ddd0;
-  --warm2:    #d4c4b0;
-  --sky:      #87bfd4;
-  --sky-dark: #4a96b4;
-  --sky-soft: #d6edf6;
-  --ink:      #2c2416;
-  --ink2:     #5a4e3e;
-  --mid:      #9a8e7e;
-  --card-bg:  #ffffff;
-  --card-border: #e4ddd3;
-  --shadow-sm: 0 2px 12px rgba(80,60,30,0.07);
-  --shadow-md: 0 6px 28px rgba(80,60,30,0.11);
-  --shadow-lg: 0 16px 48px rgba(80,60,30,0.13);
-  --radius:   12px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olabisi A. Teluwo | Data Analyst</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf7f2;
+      --warm0: #f3ede3;
+      --warm1: #e8ddd0;
+      --warm2: #d4c4b0;
+      --sky: #87bfd4;
+      --sky-dark: #4a96b4;
+      --sky-soft: #d6edf6;
+      --ink: #2c2416;
+      --ink2: #5a4e3e;
+      --mid: #9a8e7e;
+      --card-bg: #ffffff;
+      --card-border: #e4ddd3;
+      --shadow-sm: 0 2px 12px rgba(80, 60, 30, 0.07);
+      --shadow-md: 0 6px 28px rgba(80, 60, 30, 0.11);
+      --shadow-lg: 0 16px 48px rgba(80, 60, 30, 0.13);
+      --radius: 12px;
+    }
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:62px;
-  background:rgba(250,247,242,0.88);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--warm1);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 52px;
-}
-.nav-logo{
-  font-family:'Lora',serif;
-  font-size:1.05rem;font-weight:600;
-  color:var(--ink);letter-spacing:0.02em;
-}
-.nav-logo span{color:var(--sky-dark);}
-.nav-links{display:flex;gap:30px;list-style:none;}
-.nav-links a{
-  font-size:0.78rem;font-weight:500;letter-spacing:0.09em;
-  text-transform:uppercase;color:var(--mid);text-decoration:none;
-  transition:color .2s;
-}
-.nav-links a:hover{color:var(--sky-dark);}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ── HERO ── */
-#hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;
-  padding:62px 24px 80px;
-  position:relative;
-  overflow:hidden;
-  background-color:var(--warm0);
-}
-/* Dot grid pattern */
-#hero::before{
-  content:'';
-  position:absolute;inset:0;
-  background-image: radial-gradient(circle, var(--warm2) 1.2px, transparent 1.2px);
-  background-size:32px 32px;
-  opacity:0.55;
-  pointer-events:none;
-}
-/* Warm radial glow */
-#hero::after{
-  content:'';
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 55% 55% at 50% 50%, rgba(250,247,242,0.85) 0%, transparent 70%),
-    radial-gradient(ellipse 30% 40% at 80% 20%, rgba(135,191,212,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 25% 35% at 15% 80%, rgba(135,191,212,0.10) 0%, transparent 55%);
-  pointer-events:none;
-}
-.hero-inner{position:relative;z-index:1;max-width:720px;}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:50px;
-  padding:7px 18px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--sky-dark);
-  margin-bottom:36px;
-  box-shadow:var(--shadow-sm);
-  opacity:0;animation:popIn .6s .1s forwards;
-}
-.badge-dot{width:7px;height:7px;background:var(--sky);border-radius:50%;}
-.hero-name{
-  font-family:'Lora',serif;
-  font-size:clamp(3rem,7vw,5.8rem);
-  font-weight:700;line-height:1.0;
-  color:var(--ink);letter-spacing:-0.01em;
-  margin-bottom:14px;
-  opacity:0;animation:slideUp .7s .25s forwards;
-}
-.hero-name em{font-style:italic;color:var(--sky-dark);}
-.hero-sub{
-  font-size:1.1rem;font-weight:400;
-  color:var(--ink2);
-  margin-bottom:24px;
-  opacity:0;animation:slideUp .7s .4s forwards;
-}
-.hero-desc{
-  font-size:0.96rem;line-height:1.85;
-  color:var(--mid);
-  max-width:520px;margin:0 auto 44px;
-  opacity:0;animation:slideUp .7s .55s forwards;
-}
-.hero-btns{
-  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
-  opacity:0;animation:slideUp .7s .68s forwards;
-}
-.btn-a{
-  background:var(--sky-dark);color:#fff;
-  padding:13px 30px;border-radius:8px;
-  font-size:0.82rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;
-  text-decoration:none;border:none;cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  box-shadow:0 4px 18px rgba(74,150,180,0.28);
-  transition:background .22s,transform .18s,box-shadow .22s;
-}
-.btn-a:hover{background:var(--sky);transform:translateY(-2px);box-shadow:0 8px 24px rgba(74,150,180,0.32);}
-.btn-b{
-  background:var(--card-bg);color:var(--ink2);
-  padding:13px 30px;border-radius:8px;
-  font-size:0.82rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;
-  text-decoration:none;border:1.5px solid var(--card-border);cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  box-shadow:var(--shadow-sm);
-  transition:border-color .22s,color .22s,transform .18s;
-}
-.btn-b:hover{border-color:var(--sky);color:var(--sky-dark);transform:translateY(-2px);}
-.hero-stats{
-  display:flex;gap:0;justify-content:center;
-  margin-top:60px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow-md);
-  overflow:hidden;
-  max-width:540px;
-  width:100%;
-  margin-left:auto;margin-right:auto;
-  opacity:0;animation:slideUp .7s .85s forwards;
-}
-.hero-stat{
-  flex:1;padding:22px 16px;
-  text-align:center;
-  border-right:1px solid var(--card-border);
-}
-.hero-stat:last-child{border-right:none;}
-.stat-n{
-  font-family:'Lora',serif;
-  font-size:1.9rem;font-weight:700;
-  color:var(--sky-dark);line-height:1;
-  margin-bottom:4px;
-}
-.stat-l{font-size:0.72rem;color:var(--mid);font-weight:500;letter-spacing:0.03em;}
-.hero-scroll-hint{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  opacity:0;animation:fadeIn 1s 1.6s forwards;
-}
-.hs-line{width:1px;height:38px;background:linear-gradient(to bottom,var(--sky),transparent);animation:pulse 2s infinite;}
-.hs-txt{font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--mid);letter-spacing:0.2em;text-transform:uppercase;}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ── SHARED SECTION STYLES ── */
-section{padding:88px 52px;}
-.section-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--sky-dark);
-  margin-bottom:10px;
-}
-.section-tag::before{content:'';width:24px;height:1.5px;background:var(--sky);}
-.section-title{
-  font-family:'Lora',serif;
-  font-size:clamp(2rem,3.2vw,2.8rem);
-  font-weight:700;color:var(--ink);line-height:1.15;
-  margin-bottom:48px;
-}
-.section-title em{font-style:italic;color:var(--sky-dark);}
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
 
-/* ── SKILLS ── */
-#skills{background:var(--warm0);}
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.skill-card{
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:var(--radius);
-  padding:32px 28px;
-  box-shadow:var(--shadow-sm);
-  transition:box-shadow .25s,transform .22s;
-}
-.skill-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);}
-.skill-card-title{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--sky-dark);
-  margin-bottom:20px;
-  padding-bottom:14px;
-  border-bottom:1px solid var(--warm1);
-}
-.pills{display:flex;flex-wrap:wrap;gap:8px;}
-.pill{
-  padding:7px 14px;border-radius:6px;
-  background:var(--warm0);border:1px solid var(--warm1);
-  font-size:0.83rem;color:var(--ink2);font-weight:500;
-  transition:background .2s,border-color .2s,color .2s;cursor:default;
-}
-.pill:hover{background:var(--sky-soft);border-color:var(--sky);color:var(--sky-dark);}
-.soft-rows{display:flex;flex-direction:column;gap:0;}
-.soft-row{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 0;
-  border-bottom:1px solid var(--warm1);
-  font-size:0.88rem;color:var(--ink2);
-}
-.soft-row:last-child{border-bottom:none;}
-.soft-ico{
-  width:30px;height:30px;flex-shrink:0;
-  background:var(--sky-soft);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.8rem;
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 62px;
+      background: rgba(250, 247, 242, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--warm1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+    }
 
-/* ── PROJECTS ── */
-#projects{background:var(--cream);}
-.projects-cards{display:flex;flex-direction:column;gap:20px;}
-.project-card{
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:var(--radius);
-  padding:0;
-  box-shadow:var(--shadow-sm);
-  cursor:pointer;
-  overflow:hidden;
-  transition:box-shadow .25s,transform .22s;
-  position:relative;
-}
-.project-card::after{
-  content:'';
-  position:absolute;left:0;top:0;bottom:0;width:4px;
-  background:linear-gradient(to bottom,var(--sky-dark),var(--sky));
-  opacity:0;transition:opacity .3s;
-}
-.project-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);}
-.project-card:hover::after{opacity:1;}
-.pc-inner{
-  display:grid;grid-template-columns:90px 1fr auto;
-  align-items:center;gap:24px;padding:30px 32px;
-}
-.pc-num{
-  font-family:'Lora',serif;
-  font-size:3rem;font-weight:700;
-  color:var(--warm1);line-height:1;
-  transition:color .25s;
-  user-select:none;
-}
-.project-card:hover .pc-num{color:var(--sky-soft);}
-.pc-body{}
-.pc-name{
-  font-family:'Lora',serif;
-  font-size:1.3rem;font-weight:600;
-  color:var(--ink);margin-bottom:8px;
-}
-.pc-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
-.pc-badge{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.6rem;padding:3px 9px;letter-spacing:0.06em;
-  background:var(--sky-soft);border:1px solid var(--sky);
-  color:var(--sky-dark);border-radius:4px;
-}
-.pc-blurb{font-size:0.85rem;color:var(--mid);line-height:1.6;}
-.pc-btn{
-  width:44px;height:44px;flex-shrink:0;
-  background:var(--warm0);border:1.5px solid var(--warm1);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:1.05rem;color:var(--mid);
-  transition:all .25s;
-}
-.project-card:hover .pc-btn{
-  background:var(--sky-dark);border-color:var(--sky-dark);
-  color:#fff;transform:rotate(-45deg);
-}
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
 
-/* ── MODAL ── */
-.modal-bg{
-  position:fixed;inset:0;
-  background:rgba(44,36,22,0.45);
-  backdrop-filter:blur(10px);
-  z-index:500;
-  display:flex;align-items:center;justify-content:center;
-  padding:24px;
-  opacity:0;pointer-events:none;
-  transition:opacity .3s;
-}
-.modal-bg.open{opacity:1;pointer-events:all;}
-.modal-panel{
-  background:var(--card-bg);
-  border-radius:16px;
-  width:100%;max-width:860px;
-  max-height:90vh;overflow-y:auto;
-  box-shadow:0 32px 80px rgba(44,36,22,0.22);
-  transform:translateY(24px) scale(0.97);
-  transition:transform .35s;
-}
-.modal-bg.open .modal-panel{transform:none;}
-.modal-head{
-  padding:36px 44px 24px;
-  border-bottom:1px solid var(--warm1);
-  position:sticky;top:0;background:var(--card-bg);z-index:1;
-  border-radius:16px 16px 0 0;
-  display:flex;justify-content:space-between;align-items:flex-start;
-}
-.modal-tag-txt{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--sky-dark);margin-bottom:8px;
-}
-.modal-h{
-  font-family:'Lora',serif;
-  font-size:1.75rem;font-weight:700;color:var(--ink);
-}
-.close-btn{
-  width:36px;height:36px;
-  border:1.5px solid var(--warm1);background:none;
-  border-radius:50%;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--mid);font-size:1rem;
-  transition:all .2s;flex-shrink:0;margin-top:2px;
-}
-.close-btn:hover{background:var(--warm0);border-color:var(--sky);color:var(--sky-dark);}
-.modal-body{padding:32px 44px 44px;}
+    .nav-logo span {
+      color: var(--sky-dark);
+    }
 
-/* dashboard preview */
-.dash-wrap{
-  background:var(--warm0);
-  border:1px solid var(--warm1);
-  border-radius:10px;padding:24px;margin-bottom:28px;
-}
-.dash-lbl{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--mid);margin-bottom:18px;
-}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
-.kpi-box{
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:8px;padding:14px 12px;text-align:center;
-  box-shadow:var(--shadow-sm);
-}
-.kpi-v{
-  font-family:'Lora',serif;font-size:1.4rem;font-weight:700;
-  color:var(--sky-dark);line-height:1;margin-bottom:4px;
-}
-.kpi-l{font-size:0.68rem;color:var(--mid);line-height:1.3;}
-.chart-row{display:grid;grid-template-columns:2fr 1fr;gap:10px;}
-.bar-chart{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:8px;padding:14px 14px 8px;height:108px;
-  display:flex;flex-direction:column;box-shadow:var(--shadow-sm);
-}
-.bar-lbl{font-family:'IBM Plex Mono',monospace;font-size:0.56rem;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;flex-shrink:0;}
-.bars{display:flex;align-items:flex-end;gap:4px;flex:1;}
-.b{flex:1;border-radius:2px 2px 0 0;opacity:0.8;transition:opacity .2s;min-width:5px;
-  background:linear-gradient(to top,var(--sky-dark),var(--sky-soft));}
-.b:hover{opacity:1;}
-.donut-box{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:8px;padding:12px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  box-shadow:var(--shadow-sm);
-}
-.donut-ttl{font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;}
-.modal-p{font-size:0.92rem;line-height:1.85;color:var(--ink2);margin-bottom:18px;}
-.insights-title{
-  font-family:'IBM Plex Mono',monospace;font-size:0.63rem;
-  letter-spacing:0.2em;text-transform:uppercase;color:var(--sky-dark);
-  margin:26px 0 14px;padding-top:26px;border-top:1px solid var(--warm1);
-}
-.insight-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.ic{
-  background:var(--warm0);border:1px solid var(--warm1);
-  border-radius:7px;padding:10px 14px;
-  font-size:0.84rem;color:var(--ink2);
-  display:flex;align-items:flex-start;gap:8px;line-height:1.45;
-}
-.ic-dot{width:6px;height:6px;background:var(--sky);border-radius:50%;flex-shrink:0;margin-top:5px;}
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
 
-/* ── EDUCATION ── */
-#education{background:var(--warm0);}
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.edu-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:var(--radius);padding:28px;
-  box-shadow:var(--shadow-sm);
-  display:flex;flex-direction:column;gap:16px;
-}
-.edu-card-title{
-  font-family:'IBM Plex Mono',monospace;font-size:0.66rem;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--sky-dark);margin-bottom:4px;
-  padding-bottom:12px;border-bottom:1px solid var(--warm1);
-}
-.edu-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--warm1);}
-.edu-item:last-child{border-bottom:none;padding-bottom:0;}
-.edu-yr{
-  font-family:'Lora',serif;font-size:1.1rem;font-weight:600;
-  color:var(--warm2);flex-shrink:0;width:44px;padding-top:1px;
-}
-.edu-deg{font-size:0.92rem;font-weight:600;color:var(--ink);margin-bottom:3px;}
-.edu-sch{font-size:0.8rem;color:var(--mid);line-height:1.4;}
-.cert-item{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 0;border-bottom:1px solid var(--warm1);
-  transition:all .2s;
-}
-.cert-item:last-child{border-bottom:none;padding-bottom:0;}
-.cert-ico{
-  width:38px;height:38px;background:var(--sky-soft);
-  border-radius:9px;display:flex;align-items:center;justify-content:center;
-  font-size:1rem;flex-shrink:0;
-}
-.cert-name{font-size:0.9rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
-.cert-src{font-family:'IBM Plex Mono',monospace;font-size:0.63rem;color:var(--mid);letter-spacing:0.05em;}
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color .2s;
+    }
 
-/* ── CONTACT ── */
-#contact{background:var(--cream);}
-.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:start;}
-.contact-info-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:var(--radius);padding:32px 28px;
-  box-shadow:var(--shadow-sm);
-}
-.contact-intro{font-size:0.92rem;line-height:1.8;color:var(--ink2);margin-bottom:28px;}
-.contact-links{display:flex;flex-direction:column;gap:0;}
-.c-link{
-  display:flex;align-items:center;gap:13px;
-  padding:13px 0;border-bottom:1px solid var(--warm1);
-  text-decoration:none;font-size:0.86rem;color:var(--ink2);
-  transition:color .2s;
-}
-.c-link:last-child{border-bottom:none;}
-.c-link:hover{color:var(--sky-dark);}
-.c-ico{
-  width:34px;height:34px;background:var(--sky-soft);
-  border-radius:8px;display:flex;align-items:center;justify-content:center;
-  font-size:0.85rem;flex-shrink:0;transition:background .2s;
-}
-.c-link:hover .c-ico{background:var(--sky);}
-.form-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:var(--radius);padding:32px 28px;
-  box-shadow:var(--shadow-sm);
-}
-.form-card-title{
-  font-family:'Lora',serif;font-size:1.1rem;font-weight:600;
-  color:var(--ink);margin-bottom:22px;
-}
-.f-row{margin-bottom:16px;}
-.f-row label{
-  display:block;font-family:'IBM Plex Mono',monospace;
-  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--mid);margin-bottom:6px;
-}
-.f-row input,.f-row textarea{
-  width:100%;background:var(--warm0);
-  border:1.5px solid var(--warm1);border-radius:7px;
-  padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.87rem;color:var(--ink);outline:none;
-  transition:border-color .22s,background .22s;resize:none;
-}
-.f-row input:focus,.f-row textarea:focus{
-  border-color:var(--sky);background:var(--card-bg);
-}
-.f-row textarea{height:108px;}
+    .nav-links a:hover {
+      color: var(--sky-dark);
+    }
 
-/* ── FOOTER ── */
-footer{
-  background:var(--ink);color:var(--mid);
-  padding:26px 52px;
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:0.76rem;letter-spacing:0.04em;
-}
-footer span{color:var(--sky);}
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 62px 24px 80px;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--warm0);
+    }
 
-/* ── BACK TO TOP ── */
-#btt{
-  position:fixed;bottom:30px;right:30px;
-  width:46px;height:46px;
-  background:var(--sky-dark);border:none;border-radius:50%;
-  color:#fff;font-size:1rem;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;z-index:300;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .4s,transform .4s,background .2s;
-  box-shadow:0 4px 18px rgba(74,150,180,0.35);
-}
-#btt.show{opacity:1;transform:translateY(0);}
-#btt:hover{background:var(--sky);}
-#btt svg{transition:transform .25s;}
-#btt:hover svg{transform:translateY(-2px);}
+    /* Dot grid pattern */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--warm2) 1.2px, transparent 1.2px);
+      background-size: 32px 32px;
+      opacity: 0.55;
+      pointer-events: none;
+    }
 
-/* ── ANIMATIONS ── */
-@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes popIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:none}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+    /* Warm radial glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 50% 50%, rgba(250, 247, 242, 0.85) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 80% 20%, rgba(135, 191, 212, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 25% 35% at 15% 80%, rgba(135, 191, 212, 0.10) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
-.reveal.in{opacity:1;transform:none;}
-.reveal-d1{transition-delay:.1s;}
-.reveal-d2{transition-delay:.2s;}
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
 
-/* ── RESPONSIVE ── */
-@media(max-width:860px){
-  nav{padding:0 20px;}
-  .nav-links{display:none;}
-  section{padding:64px 20px;}
-  .skills-grid,.edu-grid,.contact-grid{grid-template-columns:1fr;}
-  .kpi-row{grid-template-columns:repeat(2,1fr);}
-  .chart-row{grid-template-columns:1fr;}
-  .insight-cards{grid-template-columns:1fr;}
-  .pc-inner{grid-template-columns:56px 1fr auto;gap:14px;padding:22px 20px;}
-  footer{flex-direction:column;gap:6px;text-align:center;padding:20px;}
-  .modal-head{padding:24px 22px 18px;}
-  .modal-body{padding:22px 22px 36px;}
-}
-</style>
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 50px;
+      padding: 7px 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      animation: popIn .6s .1s forwards;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--sky);
+      border-radius: 50%;
+    }
+
+    .hero-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      font-weight: 700;
+      line-height: 1.0;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: slideUp .7s .25s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--sky-dark);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ink2);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: slideUp .7s .4s forwards;
+    }
+
+    .hero-desc {
+      font-size: 0.96rem;
+      line-height: 1.85;
+      color: var(--mid);
+      max-width: 520px;
+      margin: 0 auto 44px;
+      opacity: 0;
+      animation: slideUp .7s .55s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: slideUp .7s .68s forwards;
+    }
+
+    .btn-a {
+      background: var(--sky-dark);
+      color: #fff;
+      padding: 13px 30px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      box-shadow: 0 4px 18px rgba(74, 150, 180, 0.28);
+      transition: background .22s, transform .18s, box-shadow .22s;
+    }
+
+    .btn-a:hover {
+      background: var(--sky);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74, 150, 180, 0.32);
+    }
+
+    .btn-b {
+      background: var(--card-bg);
+      color: var(--ink2);
+      padding: 13px 30px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid var(--card-border);
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .22s, color .22s, transform .18s;
+    }
+
+    .btn-b:hover {
+      border-color: var(--sky);
+      color: var(--sky-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      margin-top: 60px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      max-width: 540px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      animation: slideUp .7s .85s forwards;
+    }
+
+    .hero-stat {
+      flex: 1;
+      padding: 22px 16px;
+      text-align: center;
+      border-right: 1px solid var(--card-border);
+    }
+
+    .hero-stat:last-child {
+      border-right: none;
+    }
+
+    .stat-n {
+      font-family: 'Lora', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--sky-dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-l {
+      font-size: 0.72rem;
+      color: var(--mid);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeIn 1s 1.6s forwards;
+    }
+
+    .hs-line {
+      width: 1px;
+      height: 38px;
+      background: linear-gradient(to bottom, var(--sky), transparent);
+      animation: pulse 2s infinite;
+    }
+
+    .hs-txt {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--mid);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ── SHARED SECTION STYLES ── */
+    section {
+      padding: 88px 52px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin-bottom: 10px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 24px;
+      height: 1.5px;
+      background: var(--sky);
+    }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 48px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--sky-dark);
+    }
+
+    /* ── SKILLS ── */
+    #skills {
+      background: var(--warm0);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .25s, transform .22s;
+    }
+
+    .skill-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .skill-card-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--warm1);
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 7px 14px;
+      border-radius: 6px;
+      background: var(--warm0);
+      border: 1px solid var(--warm1);
+      font-size: 0.83rem;
+      color: var(--ink2);
+      font-weight: 500;
+      transition: background .2s, border-color .2s, color .2s;
+      cursor: default;
+    }
+
+    .pill:hover {
+      background: var(--sky-soft);
+      border-color: var(--sky);
+      color: var(--sky-dark);
+    }
+
+    .soft-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .soft-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--warm1);
+      font-size: 0.88rem;
+      color: var(--ink2);
+    }
+
+    .soft-row:last-child {
+      border-bottom: none;
+    }
+
+    .soft-ico {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      background: var(--sky-soft);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects {
+      background: var(--cream);
+    }
+
+    .projects-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 0;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .22s;
+      position: relative;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--sky-dark), var(--sky));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .project-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    .project-card:hover::after {
+      opacity: 1;
+    }
+
+    .pc-inner {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 30px 32px;
+    }
+
+    .pc-num {
+      font-family: 'Lora', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--warm1);
+      line-height: 1;
+      transition: color .25s;
+      user-select: none;
+    }
+
+    .project-card:hover .pc-num {
+      color: var(--sky-soft);
+    }
+
+    .pc-body {}
+
+    .pc-name {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .pc-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .pc-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      padding: 3px 9px;
+      letter-spacing: 0.06em;
+      background: var(--sky-soft);
+      border: 1px solid var(--sky);
+      color: var(--sky-dark);
+      border-radius: 4px;
+    }
+
+    .pc-blurb {
+      font-size: 0.85rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .pc-btn {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      background: var(--warm0);
+      border: 1.5px solid var(--warm1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      color: var(--mid);
+      transition: all .25s;
+    }
+
+    .project-card:hover .pc-btn {
+      background: var(--sky-dark);
+      border-color: var(--sky-dark);
+      color: #fff;
+      transform: rotate(-45deg);
+    }
+
+    /* ── MODAL ── */
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 22, 0.45);
+      backdrop-filter: blur(10px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    .modal-bg.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-panel {
+      background: var(--card-bg);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(44, 36, 22, 0.22);
+      transform: translateY(24px) scale(0.97);
+      transition: transform .35s;
+    }
+
+    .modal-bg.open .modal-panel {
+      transform: none;
+    }
+
+    .modal-head {
+      padding: 36px 44px 24px;
+      border-bottom: 1px solid var(--warm1);
+      position: sticky;
+      top: 0;
+      background: var(--card-bg);
+      z-index: 1;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .modal-tag-txt {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin-bottom: 8px;
+    }
+
+    .modal-h {
+      font-family: 'Lora', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .close-btn {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--warm1);
+      background: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid);
+      font-size: 1rem;
+      transition: all .2s;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .close-btn:hover {
+      background: var(--warm0);
+      border-color: var(--sky);
+      color: var(--sky-dark);
+    }
+
+    .modal-body {
+      padding: 32px 44px 44px;
+    }
+
+    /* dashboard preview */
+    .dash-wrap {
+      background: var(--warm0);
+      border: 1px solid var(--warm1);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .dash-lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 18px;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .kpi-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 14px 12px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-v {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--sky-dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .kpi-l {
+      font-size: 0.68rem;
+      color: var(--mid);
+      line-height: 1.3;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+    }
+
+    .bar-chart {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 14px 14px 8px;
+      height: 108px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .bar-lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.56rem;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      flex-shrink: 0;
+    }
+
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .b {
+      flex: 1;
+      border-radius: 2px 2px 0 0;
+      opacity: 0.8;
+      transition: opacity .2s;
+      min-width: 5px;
+      background: linear-gradient(to top, var(--sky-dark), var(--sky-soft));
+    }
+
+    .b:hover {
+      opacity: 1;
+    }
+
+    .donut-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .donut-ttl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .modal-p {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: var(--ink2);
+      margin-bottom: 18px;
+    }
+
+    .insights-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin: 26px 0 14px;
+      padding-top: 26px;
+      border-top: 1px solid var(--warm1);
+    }
+
+    .insight-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .ic {
+      background: var(--warm0);
+      border: 1px solid var(--warm1);
+      border-radius: 7px;
+      padding: 10px 14px;
+      font-size: 0.84rem;
+      color: var(--ink2);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+    }
+
+    .ic-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--sky);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    /* ── EDUCATION ── */
+    #education {
+      background: var(--warm0);
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .edu-card-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin-bottom: 4px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--warm1);
+    }
+
+    .edu-item {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--warm1);
+    }
+
+    .edu-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .edu-yr {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--warm2);
+      flex-shrink: 0;
+      width: 44px;
+      padding-top: 1px;
+    }
+
+    .edu-deg {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .edu-sch {
+      font-size: 0.8rem;
+      color: var(--mid);
+      line-height: 1.4;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--warm1);
+      transition: all .2s;
+    }
+
+    .cert-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .cert-ico {
+      width: 38px;
+      height: 38px;
+      background: var(--sky-soft);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .cert-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .cert-src {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.63rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--cream);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-intro {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--ink2);
+      margin-bottom: 28px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .c-link {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--warm1);
+      text-decoration: none;
+      font-size: 0.86rem;
+      color: var(--ink2);
+      transition: color .2s;
+    }
+
+    .c-link:last-child {
+      border-bottom: none;
+    }
+
+    .c-link:hover {
+      color: var(--sky-dark);
+    }
+
+    .c-ico {
+      width: 34px;
+      height: 34px;
+      background: var(--sky-soft);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+
+    .c-link:hover .c-ico {
+      background: var(--sky);
+    }
+
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-card-title {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 22px;
+    }
+
+    .f-row {
+      margin-bottom: 16px;
+    }
+
+    .f-row label {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+
+    .f-row input,
+    .f-row textarea {
+      width: 100%;
+      background: var(--warm0);
+      border: 1.5px solid var(--warm1);
+      border-radius: 7px;
+      padding: 11px 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.87rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .22s, background .22s;
+      resize: none;
+    }
+
+    .f-row input:focus,
+    .f-row textarea:focus {
+      border-color: var(--sky);
+      background: var(--card-bg);
+    }
+
+    .f-row textarea {
+      height: 108px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: var(--mid);
+      padding: 26px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+    }
+
+    footer span {
+      color: var(--sky);
+    }
+
+    /* ── BACK TO TOP ── */
+    #btt {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 46px;
+      height: 46px;
+      background: var(--sky-dark);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 300;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .4s, transform .4s, background .2s;
+      box-shadow: 0 4px 18px rgba(74, 150, 180, 0.35);
+    }
+
+    #btt.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #btt:hover {
+      background: var(--sky);
+    }
+
+    #btt svg {
+      transition: transform .25s;
+    }
+
+    #btt:hover svg {
+      transform: translateY(-2px);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.25
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s, transform .6s;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-d1 {
+      transition-delay: .1s;
+    }
+
+    .reveal-d2 {
+      transition-delay: .2s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:860px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 64px 20px;
+      }
+
+      .skills-grid,
+      .edu-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chart-row {
+        grid-template-columns: 1fr;
+      }
+
+      .insight-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .pc-inner {
+        grid-template-columns: 56px 1fr auto;
+        gap: 14px;
+        padding: 22px 20px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .modal-head {
+        padding: 24px 22px 18px;
+      }
+
+      .modal-body {
+        padding: 22px 22px 36px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Olabisi <span>Teluwo</span></div>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Olabisi <span>Teluwo</span></div>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-badge"><div class="badge-dot"></div>Open to Opportunities</div>
-    <h1 class="hero-name">Olabisi A.<br><em>Teluwo</em></h1>
-    <p class="hero-sub">Data Analyst &amp; Business Intelligence Specialist</p>
-    <p class="hero-desc">Transforming complex datasets into clear, actionable insights that support strategic decision-making. Skilled in Excel, Power BI and SQL — turning raw data into measurable business impact.</p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn-a">View My Work</a>
-      <a href="#contact" class="btn-b">Get In Touch</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="stat-n">5+</div><div class="stat-l">Projects Done</div></div>
-      <div class="hero-stat"><div class="stat-n">3</div><div class="stat-l">Certifications</div></div>
-      <div class="hero-stat"><div class="stat-n">3</div><div class="stat-l">Core Tools</div></div>
-      <div class="hero-stat"><div class="stat-n">BSc</div><div class="stat-l">Degree</div></div>
-    </div>
-  </div>
-  <div class="hero-scroll-hint">
-    <div class="hs-txt">Scroll</div>
-    <div class="hs-line"></div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-tag reveal">What I Bring</div>
-  <h2 class="section-title reveal">Core <em>Competencies</em></h2>
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <div class="skill-card-title">Technical Skills</div>
-      <div class="pills">
-        <div class="pill">Advanced Excel</div>
-        <div class="pill">VLOOKUP &amp; Pivot Tables</div>
-        <div class="pill">Power BI Dashboards</div>
-        <div class="pill">DAX &amp; Data Modeling</div>
-        <div class="pill">SQL Queries</div>
-        <div class="pill">Data Cleaning &amp; Validation</div>
-        <div class="pill">Power Query</div>
-        <div class="pill">KPI Tracking &amp; Reporting</div>
-        <div class="pill">Dashboard Design</div>
-        <div class="pill">Business Intelligence</div>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>Open to Opportunities
       </div>
-    </div>
-    <div class="skill-card reveal reveal-d1">
-      <div class="skill-card-title">Soft Skills</div>
-      <div class="soft-rows">
-        <div class="soft-row"><div class="soft-ico">💡</div>Data-Driven Decision Making</div>
-        <div class="soft-row"><div class="soft-ico">🔍</div>Problem Solving &amp; Analysis</div>
-        <div class="soft-row"><div class="soft-ico">🎯</div>Attention to Detail</div>
-        <div class="soft-row"><div class="soft-ico">🧠</div>Analytical &amp; Critical Thinking</div>
-        <div class="soft-row"><div class="soft-ico">🤝</div>Stakeholder Communication</div>
-        <div class="soft-row"><div class="soft-ico">⏱️</div>Time Management</div>
+      <h1 class="hero-name">Olabisi A.<br><em>Teluwo</em></h1>
+      <p class="hero-sub">Data Analyst &amp; Business Intelligence Specialist</p>
+      <p class="hero-desc">Transforming complex datasets into clear, actionable insights that support strategic
+        decision-making. Skilled in Excel, Power BI and SQL turning raw data into measurable business impact.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-a">View My Work</a>
+        <a href="#contact" class="btn-b">Get In Touch</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-tag reveal">Featured Work</div>
-  <h2 class="section-title reveal">Data <em>Projects</em></h2>
-  <div class="projects-cards">
-    <div class="project-card reveal" onclick="openModal(0)">
-      <div class="pc-inner">
-        <div class="pc-num">01</div>
-        <div class="pc-body">
-          <div class="pc-name">Banking Transactions Analysis</div>
-          <div class="pc-badges"><span class="pc-badge">Excel</span><span class="pc-badge">Interactive Dashboard</span></div>
-          <p class="pc-blurb">Customer spending behavior, channel performance and transaction trends across demographics and geographies.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-n">5+</div>
+          <div class="stat-l">Projects Done</div>
         </div>
-        <div class="pc-btn">↗</div>
+        <div class="hero-stat">
+          <div class="stat-n">3</div>
+          <div class="stat-l">Certifications</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-n">3</div>
+          <div class="stat-l">Core Tools</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-n">BSc</div>
+          <div class="stat-l">Degree</div>
+        </div>
       </div>
     </div>
-    <div class="project-card reveal reveal-d1" onclick="openModal(1)">
-      <div class="pc-inner">
-        <div class="pc-num">02</div>
-        <div class="pc-body">
-          <div class="pc-name">Sales Performance Dashboard</div>
-          <div class="pc-badges"><span class="pc-badge">Power BI</span><span class="pc-badge">Power Query</span><span class="pc-badge">DAX</span></div>
-          <p class="pc-blurb">Raw messy dataset transformed into clean sales insights — trends, regional performance, KPIs and payment behavior.</p>
+    <div class="hero-scroll-hint">
+      <div class="hs-txt">Scroll</div>
+      <div class="hs-line"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-tag reveal">What I Bring</div>
+    <h2 class="section-title reveal">Core <em>Competencies</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Technical Skills</div>
+        <div class="pills">
+          <div class="pill">Advanced Excel</div>
+          <div class="pill">VLOOKUP &amp; Pivot Tables</div>
+          <div class="pill">Power BI Dashboards</div>
+          <div class="pill">DAX &amp; Data Modeling</div>
+          <div class="pill">SQL Queries</div>
+          <div class="pill">Data Cleaning &amp; Validation</div>
+          <div class="pill">Power Query</div>
+          <div class="pill">KPI Tracking &amp; Reporting</div>
+          <div class="pill">Dashboard Design</div>
+          <div class="pill">Business Intelligence</div>
         </div>
-        <div class="pc-btn">↗</div>
+      </div>
+      <div class="skill-card reveal reveal-d1">
+        <div class="skill-card-title">Soft Skills</div>
+        <div class="soft-rows">
+          <div class="soft-row">
+            <div class="soft-ico">💡</div>Data-Driven Decision Making
+          </div>
+          <div class="soft-row">
+            <div class="soft-ico">🔍</div>Problem Solving &amp; Analysis
+          </div>
+          <div class="soft-row">
+            <div class="soft-ico">🎯</div>Attention to Detail
+          </div>
+          <div class="soft-row">
+            <div class="soft-ico">🧠</div>Analytical &amp; Critical Thinking
+          </div>
+          <div class="soft-row">
+            <div class="soft-ico">🤝</div>Stakeholder Communication
+          </div>
+          <div class="soft-row">
+            <div class="soft-ico">⏱️</div>Time Management
+          </div>
+        </div>
       </div>
     </div>
-    <div class="project-card reveal reveal-d2" onclick="openModal(2)">
-      <div class="pc-inner">
-        <div class="pc-num">03</div>
-        <div class="pc-body">
-          <div class="pc-name">Hospital Patient Analytics</div>
-          <div class="pc-badges"><span class="pc-badge">Excel</span><span class="pc-badge">Interactive Dashboard</span></div>
-          <p class="pc-blurb">Patient flow, billing trends and clinical performance covering admissions, medical conditions and test results.</p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-tag reveal">Featured Work</div>
+    <h2 class="section-title reveal">Data <em>Projects</em></h2>
+    <div class="projects-cards">
+      <div class="project-card reveal" onclick="openModal(0)">
+        <div class="pc-inner">
+          <div class="pc-num">01</div>
+          <div class="pc-body">
+            <div class="pc-name">Banking Transactions Analysis</div>
+            <div class="pc-badges"><span class="pc-badge">Excel</span><span class="pc-badge">Interactive
+                Dashboard</span></div>
+            <p class="pc-blurb">Customer spending behavior, channel performance and transaction trends across
+              demographics and geographies.</p>
+          </div>
+          <div class="pc-btn">↗</div>
         </div>
-        <div class="pc-btn">↗</div>
+      </div>
+      <div class="project-card reveal reveal-d1" onclick="openModal(1)">
+        <div class="pc-inner">
+          <div class="pc-num">02</div>
+          <div class="pc-body">
+            <div class="pc-name">Sales Performance Dashboard</div>
+            <div class="pc-badges"><span class="pc-badge">Power BI</span><span class="pc-badge">Power Query</span><span
+                class="pc-badge">DAX</span></div>
+            <p class="pc-blurb">Raw messy dataset transformed into clean sales insights trends, regional performance,
+              KPIs and payment behavior.</p>
+          </div>
+          <div class="pc-btn">↗</div>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-d2" onclick="openModal(2)">
+        <div class="pc-inner">
+          <div class="pc-num">03</div>
+          <div class="pc-body">
+            <div class="pc-name">Hospital Patient Analytics</div>
+            <div class="pc-badges"><span class="pc-badge">Excel</span><span class="pc-badge">Interactive
+                Dashboard</span></div>
+            <p class="pc-blurb">Patient flow, billing trends and clinical performance covering admissions, medical
+              conditions and test results.</p>
+          </div>
+          <div class="pc-btn">↗</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-tag reveal">Background</div>
+    <h2 class="section-title reveal">Education &amp; <em>Certifications</em></h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-card-title">Academic Qualifications</div>
+        <div class="edu-item">
+          <div class="edu-yr">2024</div>
+          <div>
+            <div class="edu-deg">BSc (Ed) Chemistry Education</div>
+            <div class="edu-sch">Olabisi Onabanjo University, Ago Iwoye, Ogun State</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-yr">2018</div>
+          <div>
+            <div class="edu-deg">O'Level</div>
+            <div class="edu-sch">Lord's Garden Comprehensive College, Sango Ota, Ogun State</div>
+          </div>
+        </div>
+      </div>
+      <div class="edu-card reveal reveal-d1">
+        <div class="edu-card-title">Certifications</div>
+        <div class="cert-item">
+          <div class="cert-ico">📊</div>
+          <div>
+            <div class="cert-name">Microsoft Excel for Data Analysis</div>
+            <div class="cert-src">Coursera</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-ico">⚡</div>
+          <div>
+            <div class="cert-name">Power BI Data Analyst</div>
+            <div class="cert-src">Tech Talent Academy</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-ico">🗃️</div>
+          <div>
+            <div class="cert-name">SQL for Data Analysis</div>
+            <div class="cert-src">DataCamp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-tag reveal">Let's Talk</div>
+    <h2 class="section-title reveal">Get In <em>Touch</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info-card reveal">
+        <p class="contact-intro">Open to data analyst roles, freelance projects and collaborations. I'm passionate about
+          using data to solve real business problems and deliver measurable value.</p>
+        <div class="contact-links">
+          <a href="mailto:teluwoolabisi@gmail.com" class="c-link">
+            <div class="c-ico">✉️</div>teluwoolabisi@gmail.com
+          </a>
+          <a href="tel:+2348103590674" class="c-link">
+            <div class="c-ico">📞</div>+234 810 359 0674
+          </a>
+          <a href="https://www.linkedin.com/in/olabisi-data-entry" target="_blank" class="c-link">
+            <div class="c-ico">💼</div>linkedin.com/in/olabisi-data-entry
+          </a>
+          <div class="c-link">
+            <div class="c-ico">📍</div>Ijebu Ode, Ogun State, Nigeria
+          </div>
+        </div>
+      </div>
+      <div class="form-card reveal reveal-d1">
+        <div class="form-card-title">Send a Message</div>
+        <div class="f-row"><label>Your Name</label><input type="text" placeholder="John Doe"></div>
+        <div class="f-row"><label>Email Address</label><input type="email" placeholder="you@company.com"></div>
+        <div class="f-row"><label>Message</label><textarea placeholder="Tell me about the opportunity…"></textarea>
+        </div>
+        <button class="btn-a" style="width:100%;"
+          onclick="alert('Connect to Formspree or EmailJS to enable real sending!')">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 <span>Olabisi A. Teluwo</span>. All rights reserved.</div>
+    <div>Data Analyst · Excel · Power BI · SQL</div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 13V3M3 7.5l5-5 5 5" stroke="white" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+
+  <!-- ══ MODAL 0 — BANKING ══ -->
+  <div class="modal-bg" id="m0">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <div class="modal-tag-txt">Project 01 — Excel Dashboard</div>
+          <div class="modal-h">Banking Transactions Analysis</div>
+        </div>
+        <button class="close-btn" onclick="closeModal(0)">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="dash-wrap">
+          <div class="dash-lbl">📊 Dashboard Preview</div>
+          <img src="./assets/img/Screenshot 2026-02-06 214334.png" alt="Dashboard Preview"
+            style="width:100%;border-radius:8px;box-shadow:var(--shadow-sm);">
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-p">In this dashboard, I analyzed a banking transactions dataset covering customer demographics,
+          account types, transaction behavior, merchant categories, devices, and locations helping financial
+          institutions understand customer spending behavior, channel performance, and transaction trends.</p>
+        <p class="modal-p">Using Excel, I designed an interactive dashboard with dynamic slicers and filters, allowing
+          stakeholders to drill into the data by date, region, channel, and customer segment making insights accessible
+          and decision-ready.</p>
+        <div class="insights-title">Key Metrics &amp; Insights Covered</div>
+        <div class="insight-cards">
+          <div class="ic">
+            <div class="ic-dot"></div>Total number of transactions
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Total and average transaction value
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Transaction trends over time
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Distribution by type &amp; merchant category
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Channel &amp; device usage (ATM, POS, Mobile)
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Geographic performance by state
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Customer demographic segmentation
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Account type behavior analysis
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-tag reveal">Background</div>
-  <h2 class="section-title reveal">Education &amp; <em>Certifications</em></h2>
-  <div class="edu-grid">
-    <div class="edu-card reveal">
-      <div class="edu-card-title">Academic Qualifications</div>
-      <div class="edu-item">
-        <div class="edu-yr">2024</div>
-        <div><div class="edu-deg">BSc (Ed) Chemistry Education</div><div class="edu-sch">Olabisi Onabanjo University, Ago Iwoye, Ogun State</div></div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-yr">2018</div>
-        <div><div class="edu-deg">O'Level</div><div class="edu-sch">Lord's Garden Comprehensive College, Sango Ota, Ogun State</div></div>
-      </div>
-    </div>
-    <div class="edu-card reveal reveal-d1">
-      <div class="edu-card-title">Certifications</div>
-      <div class="cert-item"><div class="cert-ico">📊</div><div><div class="cert-name">Microsoft Excel for Data Analysis</div><div class="cert-src">Coursera</div></div></div>
-      <div class="cert-item"><div class="cert-ico">⚡</div><div><div class="cert-name">Power BI Data Analyst</div><div class="cert-src">Tech Talent Academy</div></div></div>
-      <div class="cert-item"><div class="cert-ico">🗃️</div><div><div class="cert-name">SQL for Data Analysis</div><div class="cert-src">DataCamp</div></div></div>
-    </div>
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-tag reveal">Let's Talk</div>
-  <h2 class="section-title reveal">Get In <em>Touch</em></h2>
-  <div class="contact-grid">
-    <div class="contact-info-card reveal">
-      <p class="contact-intro">Open to data analyst roles, freelance projects and collaborations. I'm passionate about using data to solve real business problems and deliver measurable value.</p>
-      <div class="contact-links">
-        <a href="mailto:teluwoolabisi@gmail.com" class="c-link"><div class="c-ico">✉️</div>teluwoolabisi@gmail.com</a>
-        <a href="tel:+2348103590674" class="c-link"><div class="c-ico">📞</div>+234 810 359 0674</a>
-        <a href="https://www.linkedin.com/in/olabisi-data-entry" target="_blank" class="c-link"><div class="c-ico">💼</div>linkedin.com/in/olabisi-data-entry</a>
-        <div class="c-link"><div class="c-ico">📍</div>Ijebu Ode, Ogun State, Nigeria</div>
-      </div>
-    </div>
-    <div class="form-card reveal reveal-d1">
-      <div class="form-card-title">Send a Message</div>
-      <div class="f-row"><label>Your Name</label><input type="text" placeholder="John Doe"></div>
-      <div class="f-row"><label>Email Address</label><input type="email" placeholder="you@company.com"></div>
-      <div class="f-row"><label>Message</label><textarea placeholder="Tell me about the opportunity…"></textarea></div>
-      <button class="btn-a" style="width:100%;" onclick="alert('Connect to Formspree or EmailJS to enable real sending!')">Send Message</button>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div>© 2025 <span>Olabisi A. Teluwo</span>. All rights reserved.</div>
-  <div>Data Analyst · Excel · Power BI · SQL</div>
-</footer>
-
-<!-- BACK TO TOP -->
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <path d="M8 13V3M3 7.5l5-5 5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
-
-<!-- ══ MODAL 0 — BANKING ══ -->
-<div class="modal-bg" id="m0">
-  <div class="modal-panel">
-    <div class="modal-head">
-      <div><div class="modal-tag-txt">Project 01 — Excel Dashboard</div><div class="modal-h">Banking Transactions Analysis</div></div>
-      <button class="close-btn" onclick="closeModal(0)">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="dash-wrap">
-        <div class="dash-lbl">📊 Dashboard Preview</div>
-        <div class="kpi-row">
-          <div class="kpi-box"><div class="kpi-v">48.2K</div><div class="kpi-l">Total Transactions</div></div>
-          <div class="kpi-box"><div class="kpi-v">₦2.1B</div><div class="kpi-l">Total Value</div></div>
-          <div class="kpi-box"><div class="kpi-v">₦43.5K</div><div class="kpi-l">Avg Value</div></div>
-          <div class="kpi-box"><div class="kpi-v">7</div><div class="kpi-l">Active States</div></div>
+  <!-- ══ MODAL 1 — SALES ══ -->
+  <div class="modal-bg" id="m1">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <div class="modal-tag-txt">Project 02 — Power BI Dashboard</div>
+          <div class="modal-h">Sales Performance Dashboard</div>
         </div>
-        <div class="chart-row">
-          <div class="bar-chart">
-            <div class="bar-lbl">Transaction Trend — Monthly</div>
-            <div class="bars">
-              <div class="b" style="height:44%"></div><div class="b" style="height:59%"></div><div class="b" style="height:51%"></div><div class="b" style="height:73%"></div>
-              <div class="b" style="height:66%"></div><div class="b" style="height:81%"></div><div class="b" style="height:71%"></div><div class="b" style="height:90%"></div>
-              <div class="b" style="height:83%"></div><div class="b" style="height:96%"></div><div class="b" style="height:78%"></div><div class="b" style="height:88%"></div>
+        <button class="close-btn" onclick="closeModal(1)">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="dash-wrap">
+          <div class="dash-lbl">📈 Dashboard Preview</div>
+          <img src="./assets/img/Screenshot 2026-01-28 204119.png" alt="Dashboard Preview"
+            style="width:100%;border-radius:8px;box-shadow:var(--shadow-sm);">
+        </div>
+        <div class="">
+          <p class="modal-p">This project showcases my ability to handle real-world data challenges from start to
+            finish. I started with a raw, super messy dataset and transformed it into clean, meaningful insights using
+            Power Query and Power BI handling nulls, fixing inconsistent formats, and preparing data for analysis.</p>
+          <p class="modal-p">The final dashboard provides a comprehensive view of business performance with interactive
+            filtering by time period, product category, region, and payment method enabling faster, data-driven
+            decisions.</p>
+          <div class="insights-title">Skills Demonstrated</div>
+          <div class="insight-cards">
+            <div class="ic">
+              <div class="ic-dot"></div>Data cleaning &amp; transformation
+            </div>
+            <div class="ic">
+              <div class="ic-dot"></div>Handling nulls &amp; inconsistent formats
+            </div>
+            <div class="ic">
+              <div class="ic-dot"></div>Power Query data preparation
+            </div>
+            <div class="ic">
+              <div class="ic-dot"></div>Data modeling in Power BI
+            </div>
+            <div class="ic">
+              <div class="ic-dot"></div>KPI creation with DAX
+            </div>
+            <div class="ic">
+              <div class="ic-dot"></div>Sales trend analysis over time
+            </div>
+            <div class="ic">
+              <div class="ic-dot"></div>Sales by product &amp; region
+            </div>
+            <div class="ic">
+              <div class="ic-dot"></div>Customer payment preferences
             </div>
           </div>
-          <div class="donut-box">
-            <div class="donut-ttl">Channel Split</div>
-            <svg width="72" height="72" viewBox="0 0 72 72">
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#f3ede3" stroke-width="11"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#87bfd4" stroke-width="11" stroke-dasharray="49 115" stroke-dashoffset="16"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#4a96b4" stroke-width="11" stroke-dasharray="34 115" stroke-dashoffset="-33"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#d6edf6" stroke-width="11" stroke-dasharray="22 115" stroke-dashoffset="-67"/>
-              <text x="36" y="40" text-anchor="middle" fill="#5a4e3e" font-size="8" font-family="IBM Plex Mono">ATM</text>
-            </svg>
-          </div>
         </div>
-      </div>
-      <p class="modal-p">In this dashboard, I analyzed a banking transactions dataset covering customer demographics, account types, transaction behavior, merchant categories, devices, and locations — helping financial institutions understand customer spending behavior, channel performance, and transaction trends.</p>
-      <p class="modal-p">Using Excel, I designed an interactive dashboard with dynamic slicers and filters, allowing stakeholders to drill into the data by date, region, channel, and customer segment — making insights accessible and decision-ready.</p>
-      <div class="insights-title">Key Metrics &amp; Insights Covered</div>
-      <div class="insight-cards">
-        <div class="ic"><div class="ic-dot"></div>Total number of transactions</div>
-        <div class="ic"><div class="ic-dot"></div>Total and average transaction value</div>
-        <div class="ic"><div class="ic-dot"></div>Transaction trends over time</div>
-        <div class="ic"><div class="ic-dot"></div>Distribution by type &amp; merchant category</div>
-        <div class="ic"><div class="ic-dot"></div>Channel &amp; device usage (ATM, POS, Mobile)</div>
-        <div class="ic"><div class="ic-dot"></div>Geographic performance by state</div>
-        <div class="ic"><div class="ic-dot"></div>Customer demographic segmentation</div>
-        <div class="ic"><div class="ic-dot"></div>Account type behavior analysis</div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ══ MODAL 1 — SALES ══ -->
-<div class="modal-bg" id="m1">
-  <div class="modal-panel">
-    <div class="modal-head">
-      <div><div class="modal-tag-txt">Project 02 — Power BI Dashboard</div><div class="modal-h">Sales Performance Dashboard</div></div>
-      <button class="close-btn" onclick="closeModal(1)">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="dash-wrap">
-        <div class="dash-lbl">📈 Dashboard Preview</div>
-        <div class="kpi-row">
-          <div class="kpi-box"><div class="kpi-v">₦8.4M</div><div class="kpi-l">Total Sales</div></div>
-          <div class="kpi-box"><div class="kpi-v">12,560</div><div class="kpi-l">Qty Sold</div></div>
-          <div class="kpi-box"><div class="kpi-v">3,204</div><div class="kpi-l">Transactions</div></div>
-          <div class="kpi-box"><div class="kpi-v">₦2,622</div><div class="kpi-l">Avg Sale</div></div>
+  <!-- ══ MODAL 2 — HOSPITAL ══ -->
+  <div class="modal-bg" id="m2">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <div class="modal-tag-txt">Project 03 — Excel Dashboard</div>
+          <div class="modal-h">Hospital Patient Analytics</div>
         </div>
-        <div class="chart-row">
-          <div class="bar-chart">
-            <div class="bar-lbl">Sales Trend — Monthly</div>
-            <div class="bars">
-              <div class="b" style="height:38%"></div><div class="b" style="height:55%"></div><div class="b" style="height:70%"></div><div class="b" style="height:58%"></div>
-              <div class="b" style="height:47%"></div><div class="b" style="height:83%"></div><div class="b" style="height:76%"></div><div class="b" style="height:92%"></div>
-              <div class="b" style="height:65%"></div><div class="b" style="height:89%"></div><div class="b" style="height:71%"></div><div class="b" style="height:97%"></div>
-            </div>
-          </div>
-          <div class="donut-box">
-            <div class="donut-ttl">By Region</div>
-            <svg width="72" height="72" viewBox="0 0 72 72">
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#f3ede3" stroke-width="11"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#87bfd4" stroke-width="11" stroke-dasharray="60 115" stroke-dashoffset="16"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#4a96b4" stroke-width="11" stroke-dasharray="35 115" stroke-dashoffset="-44"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#d6edf6" stroke-width="11" stroke-dasharray="20 115" stroke-dashoffset="-79"/>
-              <text x="36" y="40" text-anchor="middle" fill="#5a4e3e" font-size="8" font-family="IBM Plex Mono">North</text>
-            </svg>
-          </div>
-        </div>
+        <button class="close-btn" onclick="closeModal(2)">✕</button>
       </div>
-      <p class="modal-p">This project showcases my ability to handle real-world data challenges from start to finish. I started with a raw, super messy dataset and transformed it into clean, meaningful insights using Power Query and Power BI — handling nulls, fixing inconsistent formats, and preparing data for analysis.</p>
-      <p class="modal-p">The final dashboard provides a comprehensive view of business performance with interactive filtering by time period, product category, region, and payment method — enabling faster, data-driven decisions.</p>
-      <div class="insights-title">Skills Demonstrated</div>
-      <div class="insight-cards">
-        <div class="ic"><div class="ic-dot"></div>Data cleaning &amp; transformation</div>
-        <div class="ic"><div class="ic-dot"></div>Handling nulls &amp; inconsistent formats</div>
-        <div class="ic"><div class="ic-dot"></div>Power Query data preparation</div>
-        <div class="ic"><div class="ic-dot"></div>Data modeling in Power BI</div>
-        <div class="ic"><div class="ic-dot"></div>KPI creation with DAX</div>
-        <div class="ic"><div class="ic-dot"></div>Sales trend analysis over time</div>
-        <div class="ic"><div class="ic-dot"></div>Sales by product &amp; region</div>
-        <div class="ic"><div class="ic-dot"></div>Customer payment preferences</div>
+      <div class="modal-body">
+        <div class="dash-wrap">
+          <div class="dash-lbl">🏥 Dashboard Preview</div>
+          <img src="./assets/img/Screenshot 2026-02-04 132725.png" alt="Dashboard Preview"
+            style="width:100%;border-radius:8px;box-shadow:var(--shadow-sm);">
+        </div>
+        <p class="modal-p">In this project, I analyzed a hospital dataset covering patient demographics, admissions,
+          medical conditions, billing, medications, and test results identifying patterns around patient flow, cost
+          drivers, and clinical performance.</p>
+        <p class="modal-p">Using Excel, I built an interactive dashboard with dynamic filtering by admission date,
+          medical condition, gender, insurance provider, medication, and test result helping stakeholders make faster,
+          data-driven decisions.</p>
+        <div class="insights-title">Key Metrics &amp; Insights Covered</div>
+        <div class="insight-cards">
+          <div class="ic">
+            <div class="ic-dot"></div>Total patient admissions
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Average length of stay
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Billing &amp; revenue trends
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Medical condition distribution
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Test result analysis
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Patient demographics by gender
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Blood type distribution
+          </div>
+          <div class="ic">
+            <div class="ic-dot"></div>Insurance provider breakdown
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ══ MODAL 2 — HOSPITAL ══ -->
-<div class="modal-bg" id="m2">
-  <div class="modal-panel">
-    <div class="modal-head">
-      <div><div class="modal-tag-txt">Project 03 — Excel Dashboard</div><div class="modal-h">Hospital Patient Analytics</div></div>
-      <button class="close-btn" onclick="closeModal(2)">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="dash-wrap">
-        <div class="dash-lbl">🏥 Dashboard Preview</div>
-        <div class="kpi-row">
-          <div class="kpi-box"><div class="kpi-v">9,547</div><div class="kpi-l">Total Admissions</div></div>
-          <div class="kpi-box"><div class="kpi-v">15.6</div><div class="kpi-l">Avg Stay (days)</div></div>
-          <div class="kpi-box"><div class="kpi-v">₦4.8B</div><div class="kpi-l">Total Billing</div></div>
-          <div class="kpi-box"><div class="kpi-v">6</div><div class="kpi-l">Conditions Tracked</div></div>
-        </div>
-        <div class="chart-row">
-          <div class="bar-chart">
-            <div class="bar-lbl">Monthly Admissions</div>
-            <div class="bars">
-              <div class="b" style="height:60%"></div><div class="b" style="height:74%"></div><div class="b" style="height:55%"></div><div class="b" style="height:81%"></div>
-              <div class="b" style="height:68%"></div><div class="b" style="height:92%"></div><div class="b" style="height:77%"></div><div class="b" style="height:86%"></div>
-              <div class="b" style="height:71%"></div><div class="b" style="height:95%"></div><div class="b" style="height:83%"></div><div class="b" style="height:89%"></div>
-            </div>
-          </div>
-          <div class="donut-box">
-            <div class="donut-ttl">By Gender</div>
-            <svg width="72" height="72" viewBox="0 0 72 72">
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#f3ede3" stroke-width="11"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#87bfd4" stroke-width="11" stroke-dasharray="62 115" stroke-dashoffset="16"/>
-              <circle cx="36" cy="36" r="26" fill="none" stroke="#4a96b4" stroke-width="11" stroke-dasharray="53 115" stroke-dashoffset="-46"/>
-              <text x="36" y="40" text-anchor="middle" fill="#5a4e3e" font-size="8" font-family="IBM Plex Mono">F/M</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <p class="modal-p">In this project, I analyzed a hospital dataset covering patient demographics, admissions, medical conditions, billing, medications, and test results — identifying patterns around patient flow, cost drivers, and clinical performance.</p>
-      <p class="modal-p">Using Excel, I built an interactive dashboard with dynamic filtering by admission date, medical condition, gender, insurance provider, medication, and test result — helping stakeholders make faster, data-driven decisions.</p>
-      <div class="insights-title">Key Metrics &amp; Insights Covered</div>
-      <div class="insight-cards">
-        <div class="ic"><div class="ic-dot"></div>Total patient admissions</div>
-        <div class="ic"><div class="ic-dot"></div>Average length of stay</div>
-        <div class="ic"><div class="ic-dot"></div>Billing &amp; revenue trends</div>
-        <div class="ic"><div class="ic-dot"></div>Medical condition distribution</div>
-        <div class="ic"><div class="ic-dot"></div>Test result analysis</div>
-        <div class="ic"><div class="ic-dot"></div>Patient demographics by gender</div>
-        <div class="ic"><div class="ic-dot"></div>Blood type distribution</div>
-        <div class="ic"><div class="ic-dot"></div>Insurance provider breakdown</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  function openModal(i){document.getElementById('m'+i).classList.add('open');document.body.style.overflow='hidden';}
-  function closeModal(i){document.getElementById('m'+i).classList.remove('open');document.body.style.overflow='';}
-  document.querySelectorAll('.modal-bg').forEach(b=>{
-    b.addEventListener('click',e=>{if(e.target===b){b.classList.remove('open');document.body.style.overflow='';}});
-  });
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Escape')document.querySelectorAll('.modal-bg.open').forEach(b=>{b.classList.remove('open');document.body.style.overflow='';});
-  });
-  const btt=document.getElementById('btt');
-  window.addEventListener('scroll',()=>btt.classList.toggle('show',window.scrollY>400));
-  const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:0.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+  <script>
+    function openModal(i) { document.getElementById('m' + i).classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeModal(i) { document.getElementById('m' + i).classList.remove('open'); document.body.style.overflow = ''; }
+    document.querySelectorAll('.modal-bg').forEach(b => {
+      b.addEventListener('click', e => { if (e.target === b) { b.classList.remove('open'); document.body.style.overflow = ''; } });
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') document.querySelectorAll('.modal-bg.open').forEach(b => { b.classList.remove('open'); document.body.style.overflow = ''; });
+    });
+    const btt = document.getElementById('btt');
+    window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 400));
+    const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
 </body>
+
 </html>
